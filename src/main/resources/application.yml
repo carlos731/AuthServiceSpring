@@ -1,0 +1,38 @@
+server:
+  port: 9000
+
+file:
+  upload-dir: D:\microsservices\e-commerce\springboot\upload\profile
+
+spring:
+  application:
+    name: "AuthService"
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_auth?createDatabaseIfNotExist=true&useSSL=false&useTimezone=true&serverTimezone=GMT-3
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: create #update
+      format_sql: true
+    show-sql: true
+
+  # Multipart File
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+#JWT-SECURITY
+jwt:
+  secret: StringUsadaParaGerarToken
+  expiration: 604800000
+
+#jwt-secret
+api:
+  security:
+    token.secret: ${JWT_SECRET:my-secret-key}
